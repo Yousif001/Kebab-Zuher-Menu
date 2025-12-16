@@ -1,5 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Libre+Baskerville:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Libre+Baskerville:wght@400;700&family=Scheherazade+New:wght@400;700&display=swap');
 
+/* ---------- GLOBAL ---------- */
 body {
     font-family: 'Libre Baskerville', serif;
     background: #f4ede4;
@@ -8,16 +9,17 @@ body {
     min-height: 100vh;
 }
 
+/* ---------- PAGE ---------- */
 .page {
     max-width: 700px;
     margin: 0 auto 40px auto;
     background: #fff9f0;
     border: 3px solid #8b4513;
     padding: 40px;
-    page-break-after: always;
     box-shadow: 0 4px 15px rgba(0,0,0,0.15);
 }
 
+/* ---------- HEADER ---------- */
 .header {
     text-align: center;
     margin-bottom: 40px;
@@ -28,7 +30,7 @@ body {
 .restaurant-name {
     font-size: 52px;
     color: #8b4513;
-    margin: 0 0 10px 0;
+    margin: 0;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 3px;
@@ -36,22 +38,21 @@ body {
 
 .restaurant-name-ar,
 .restaurant-name-ku {
-    font-family: 'Amiri', serif;
+    font-family: 'Amiri', 'Scheherazade New', serif;
     font-size: 48px;
     color: #8b4513;
-    margin: 15px 0 0 0;
-    direction: rtl;
+    margin: 0;
     font-weight: 700;
 }
 
 .tagline {
     font-size: 14px;
     color: #8b4513;
-    margin: 10px 0 0 0;
     font-style: italic;
     letter-spacing: 2px;
 }
 
+/* ---------- SECTIONS ---------- */
 .section {
     margin-bottom: 45px;
 }
@@ -59,17 +60,22 @@ body {
 .section-title {
     font-size: 28px;
     color: #8b4513;
-    margin-bottom: 25px;
     font-weight: 700;
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 2px;
-    padding-bottom: 10px;
     border-bottom: 2px solid #d2691e;
+    padding-bottom: 10px;
+    margin-bottom: 25px;
 }
 
+[dir="rtl"] .section-title {
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+/* ---------- MENU ITEMS ---------- */
 .menu-item {
-    margin-bottom: 20px;
     padding: 15px 0;
     border-bottom: 1px dotted #d2691e;
 }
@@ -80,34 +86,29 @@ body {
 
 .item-name {
     font-size: 20px;
-    color: #4a3728;
-    margin: 0 0 5px 0;
     font-weight: 700;
+    color: #4a3728;
 }
 
 .item-desc {
     font-size: 15px;
-    color: #6b5d52;
-    margin: 0;
     font-style: italic;
-    line-height: 1.5;
+    color: #6b5d52;
 }
 
 .item-name-ar,
 .item-name-ku {
-    font-family: 'Amiri', serif;
+    font-family: 'Amiri', 'Scheherazade New', serif;
     font-size: 24px;
-    color: #4a3728;
-    margin: 0;
-    direction: rtl;
     font-weight: 700;
+    color: #4a3728;
 }
 
+/* ---------- DRINKS ---------- */
 .drink-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 18px;
     padding: 12px 0;
     border-bottom: 1px dotted #d2691e;
 }
@@ -116,77 +117,89 @@ body {
     border-bottom: none;
 }
 
-.drink-item.rtl {
-    flex-direction: row-reverse;
-}
-
-.drink-names {
-    flex: 1;
-}
 
 .drink-name {
     font-size: 18px;
-    color: #4a3728;
-    margin: 0;
     font-weight: 700;
 }
 
 .drink-name-ar,
 .drink-name-ku {
-    font-family: 'Amiri', serif;
+    font-family: 'Amiri', 'Scheherazade New', serif;
     font-size: 22px;
-    color: #4a3728;
-    margin: 0;
-    direction: rtl;
     font-weight: 700;
 }
 
 .price {
     font-size: 18px;
-    color: #8b4513;
     font-weight: 700;
-    white-space: nowrap;
-    margin-left: 20px;
+    color: #8b4513;
     background: #f4e4d4;
     padding: 5px 12px;
     border-radius: 4px;
+    margin-left: 20px;
+    white-space: nowrap;
+
+    /* FIX for RTL prices */
+    direction: ltr;
+    unicode-bidi: isolate;
 }
 
-.price.rtl {
-    margin-left: 0;
-    margin-right: 20px;
+/* RTL layout: text on right, price on left */
+[dir="rtl"] .drink-names {
+    order: 2;
+    text-align: right;
 }
 
+[dir="rtl"] .price {
+    order: 1;
+    margin-right: 0;
+    margin-left: 20px;
+}
+
+
+
+
+
+/* ---------- FOOTER ---------- */
 .footer {
     text-align: center;
     margin-top: 40px;
     padding-top: 20px;
     border-top: 2px solid #d2691e;
     font-size: 13px;
-    color: #8b4513;
     font-style: italic;
+    color: #8b4513;
 }
 
+/* ---------- PRINT ---------- */
 @media print {
     body {
         background: white;
     }
+
     .page {
+        page-break-after: always;
         box-shadow: none;
         margin-bottom: 0;
         border: 2px solid #8b4513;
     }
+
+    .page:last-child {
+        page-break-after: auto;
+    }
 }
 
+/* ---------- MOBILE ---------- */
 @media (max-width: 600px) {
     .page {
         padding: 25px 20px;
     }
-    
+
     .restaurant-name {
         font-size: 38px;
     }
-    
+
     .restaurant-name-ar,
     .restaurant-name-ku {
         font-size: 34px;
